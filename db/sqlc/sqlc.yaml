@@ -11,3 +11,6 @@ sql:
         emit_interface: true
         emit_exact_table_names: false
         sql_package: "pgx/v5"
+        overrides:
+          - db_type: "date"
+            go_type: "time.Time"

@@ -7,8 +7,7 @@ package db
 
 import (
 	"context"
-
-	"github.com/jackc/pgx/v5/pgtype"
+	"time"
 )
 
 const countUsers = `-- name: CountUsers :one
@@ -29,8 +28,8 @@ RETURNING id, name, dob
 `
 
 type CreateUserParams struct {
-	Name string      `json:"name"`
-	Dob  pgtype.Date `json:"dob"`
+	Name string    `json:"name"`
+	Dob  time.Time `json:"dob"`
 }
 
 func (q *Queries) CreateUser(ctx context.Context, arg CreateUserParams) (User, error) {
@@ -102,9 +101,9 @@ RETURNING id, name, dob
 `
 
 type UpdateUserParams struct {
-	Name string      `json:"name"`
-	Dob  pgtype.Date `json:"dob"`
-	ID   int32       `json:"id"`
+	Name string    `json:"name"`
+	Dob  time.Time `json:"dob"`
+	ID   int32     `json:"id"`
 }
 
 func (q *Queries) UpdateUser(ctx context.Context, arg UpdateUserParams) (User, error) {
