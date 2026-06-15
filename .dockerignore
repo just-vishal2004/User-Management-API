@@ -1,0 +1,16 @@
+# Build artifacts
+bin/
+tmp/
+
+# Environment files — never bake secrets into images
+.env
+
+# Git
+.git/
+.gitignore
+
+# Documentation
+README.md
+
+# Test files
+*_test.go
