@@ -26,15 +26,19 @@ func NewUserService(repo *repository.UserRepository) *UserService {
 // ─── Age Calculation ───────────────────────────────────────────────────────
 
 // CalculateAge returns the current age in years for a given date of birth.
-// It accounts for whether the birthday has occurred yet this year.
-// This function is exported so it can be unit tested independently.
+// It uses time.Now() as the reference point.
+// Exported so it can be called from handlers or other packages if needed.
 func CalculateAge(dob time.Time) int {
-	now := time.Now()
+	return calculateAgeAt(dob, time.Now())
+}
 
+// calculateAgeAt calculates age relative to a given reference time.
+// Unexported — used internally and in tests for deterministic results.
+// Separating this from CalculateAge lets us test with a fixed "today"
+// without time.Now() making test results change over real time.
+func calculateAgeAt(dob, now time.Time) int {
 	years := now.Year() - dob.Year()
 
-	// Check if the birthday has occurred yet this year.
-	// If today is before the birthday month/day, subtract one year.
 	birthdayThisYear := time.Date(
 		now.Year(),
 		dob.Month(),
