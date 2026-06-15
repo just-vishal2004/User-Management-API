@@ -5,11 +5,11 @@
 package db
 
 import (
-	"time"
+	"github.com/jackc/pgx/v5/pgtype"
 )
 
 type User struct {
-	ID   int32     `json:"id"`
-	Name string    `json:"name"`
-	Dob  time.Time `json:"dob"`
+	ID   int32       `json:"id"`
+	Name string      `json:"name"`
+	Dob  pgtype.Date `json:"dob"`
 }
