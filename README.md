@@ -1,8 +1,6 @@
-# Ainyx Backend — User Management API
+# User Management API
 
 A production-quality RESTful API built with **Go**, **Fiber**, **PostgreSQL**, and **SQLC**. Manages users with their name and date of birth, calculating age dynamically at query time.
-
-Built as part of the Ainyx Solutions Software Engineering Intern (Backend) assessment.
 
 ---
 
